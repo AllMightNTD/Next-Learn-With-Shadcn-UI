@@ -216,7 +216,7 @@ export function TableProvider<TData, Input>({
       sortOptions
     ]
   ) as unknown as TableContextValue<unknown, unknown>
-
+  
   return (
     <TableContext.Provider value={ctxValue}>{children}</TableContext.Provider>
   )

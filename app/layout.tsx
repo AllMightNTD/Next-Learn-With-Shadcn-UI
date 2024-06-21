@@ -1,9 +1,9 @@
+import ThemeProvider from "@/lib/context/ThemeProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import ThemeProvider from "@/lib/context/ThemeProvider";
-import { Suspense } from "react";
-import Loading from "./loading";
+import ReactQueryProvider from "@/components/ReactQueryProvider";
 
 const roboto = Roboto({
   weight: "400",
@@ -23,11 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <ThemeProvider>
-      <html lang="en">
-        <body className={roboto.className}>
-          <div className="min-h-[100vh]"> {children}</div>
-        </body>
-      </html>
+      <ReactQueryProvider>
+        <html lang="en">
+          <body className={roboto.className}>
+            <div className="min-h-[100vh]"> {children}</div>
+          </body>
+        </html>
+      </ReactQueryProvider>
     </ThemeProvider>
   );
 }

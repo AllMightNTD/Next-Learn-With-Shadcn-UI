@@ -54,6 +54,7 @@ const Page = () => {
         data
       );
       if (res.status == 200) {
+        localStorage.setItem('token_next', res.data.data.access_token)
         login(res.data.data.access_token);
       }
     } catch (error: any) {
@@ -79,6 +80,7 @@ const Page = () => {
           placeholder = "Please enter your email"
           required
         />
+        
            <Input
           label="My Custom Input"
           name="password"

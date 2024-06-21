@@ -2,6 +2,7 @@
 import ReactTable from "@/components/Table/ReactTable";
 import { logout } from "@/lib/action";
 import { TableProvider } from "@/lib/context/TableProvider";
+import { HomeList } from "@/screens/HomeList";
 import { ColumnDef } from "@tanstack/react-table";
 
 type User = {
@@ -151,7 +152,7 @@ export default function Home() {
     <TableProvider>
         trang chủ
         <button className="px-2 py-2 bg-red-300 text-white" onClick={handleLogout}>Log out</button>
-        <ReactTable columns={columns} data={data} onRowClick={onRowClick}/>
+       <HomeList/>
     </TableProvider>
   );
 }

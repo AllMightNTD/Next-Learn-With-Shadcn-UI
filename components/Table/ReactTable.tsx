@@ -15,14 +15,15 @@ import { ReactTableProvider } from "@/lib/context/ReactTableContext";
 import { ReactTableContextValue } from "@/lib/types/context";
 import { PaginationParams } from "@/lib/types/pagination";
 import { TablePagination } from "./TablePagination";
+import { Progress } from "../ui/progress";
 
 interface TableProps {
-  columns: ColumnDef<unknown, any>[];
+  columns: ColumnDef<any>[];
   data: any;
-  onRowClick: () => void;
-  paginationProps: any;
+  onRowClick?: () => void;
+  paginationProps?: any;
   children?: React.ReactNode;
-  onCopy: () => void;
+  onCopy?: () => void;
   tableProps?: any;
   loading?: boolean;
 }
@@ -66,8 +67,12 @@ const ReactTable: React.FC<TableProps> = ({ columns, data, onRowClick, paginatio
     }),
     [instance, onRowClick, loading, pagiMeta, data, tableProps, onCopy, children]
   );  
+  
+  if (loading) {
+    return <>loading...</>
+  }
 
-  if (data.length === 0) {
+  if (data.length === 0 && !loading) {
     return <>Không có dữ liệu</>;
   }
 

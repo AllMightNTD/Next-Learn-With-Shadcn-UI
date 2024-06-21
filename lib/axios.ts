@@ -6,7 +6,7 @@ axios.defaults.withCredentials = false
 
 const axiosInstance = axios.create()
 
-axiosInstance.defaults.baseURL = process.env.VITE_API_URL
+axiosInstance.defaults.baseURL = process.env.NEXT_PUBLIC_API
 
 axiosInstance.defaults.headers.post["Content-Type"] = "application/json"
 
@@ -20,15 +20,14 @@ export type RefreshTokenResponse = {
 
 // Authorization
 function authRequestInterceptor(config: AxiosRequestConfig) {
-  const token = localStorage.getItem('access_token')
+  const token =  localStorage.getItem('token_next')
   if (token && token !== 'undefined' && config.headers) {
     config.headers.authorization = `Bearer ${token}`
   }
   return config
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
+// @ts-ignore
 axiosInstance.interceptors.request.use(authRequestInterceptor);
 axiosInstance.interceptors.response.use(undefined, interceptor(axiosInstance))
 export { axiosInstance }
