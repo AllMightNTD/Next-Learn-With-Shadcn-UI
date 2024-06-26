@@ -12,6 +12,7 @@ import {
   useForm
 } from "react-hook-form";
 import * as yup from "yup";
+import { axiosInstance } from "@/lib/axios";
 
 interface LoginHandler {
   email: string;
@@ -49,7 +50,7 @@ const Page = () => {
   const onSubmit: SubmitHandler<LoginHandler> = async (data) => {
     try {
       console.log('data' , data);
-      const res = await axios.post(
+      const res = await axiosInstance.post(
         `http://localhost:8000/api/user/login`,
         data
       );

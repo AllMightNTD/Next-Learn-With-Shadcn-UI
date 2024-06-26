@@ -1,5 +1,8 @@
 "use client";
+import { ReactTableProvider } from "@/lib/context/ReactTableContext";
 import { TableContextValue, TableProvider, useTableContext } from "@/lib/context/TableProvider";
+import { ReactTableContextValue } from "@/lib/types/context";
+import { PaginationParams } from "@/lib/types/pagination";
 import {
   ColumnDef,
   RowSelectionState,
@@ -10,12 +13,8 @@ import {
   useReactTable
 } from "@tanstack/react-table";
 import React, { useMemo, useState } from "react";
-import { usePaginationState } from "./hooks/usePaginationState";
-import { ReactTableProvider } from "@/lib/context/ReactTableContext";
-import { ReactTableContextValue } from "@/lib/types/context";
-import { PaginationParams } from "@/lib/types/pagination";
 import { TablePagination } from "./TablePagination";
-import { Progress } from "../ui/progress";
+import { usePaginationState } from "./hooks/usePaginationState";
 
 interface TableProps {
   columns: ColumnDef<any>[];

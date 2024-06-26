@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import ReactQueryProvider from "@/components/ReactQueryProvider";
+import AuthProvider from "@/lib/context/AuthProvider";
 
 const roboto = Roboto({
   weight: "400",
@@ -22,14 +23,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ThemeProvider>
-      <ReactQueryProvider>
-        <html lang="en">
-          <body className={roboto.className}>
-            <div className="min-h-[100vh]"> {children}</div>
-          </body>
-        </html>
-      </ReactQueryProvider>
-    </ThemeProvider>
+    <AuthProvider>
+    <ReactQueryProvider>
+      <html lang="en">
+        <body className={roboto.className}>
+          <div className="min-h-[100vh]"> {children}</div>
+        </body>
+      </html>
+    </ReactQueryProvider>
+  </AuthProvider>
   );
 }

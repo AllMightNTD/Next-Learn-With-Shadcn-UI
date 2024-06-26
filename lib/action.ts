@@ -12,7 +12,8 @@ export const login = (access_token : string) => {
     redirect("/");
 }
 
-export const logout = async() => {
+export const logout = () => {
     cookies().delete('access_token')
     redirect("/login");
+   
 }
